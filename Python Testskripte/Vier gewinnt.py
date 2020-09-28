@@ -41,7 +41,27 @@ while Programm_ENDE == False:
     else:
         Symbol = Symbol2
 
-    Eingabe = input("Bitte Zahl zwischen 1-7")
+    Eingabefehler = True 
+    while Eingabefehler:
+        Eingabe = input("Bitte Zahl zwischen 1-7")
+        if Eingabe.isnumeric() == True:
+            if int(Eingabe) in range (1,7):
+                if S_Stand[int(Eingabe)-1] < 7:
+                    Eingabefehler = False #Eingabe ist Korrekt
+                else:
+                    print ("Die Saplte [" + str(Eingabe) + "] ist voll")
+            else:
+                print("Zahl ausserhalb 1..7")
+        else:
+            if Eingabe.upper() == "ENDE":
+                exit()
+            else:
+                print("Bitte eine Zahl zwischen 1..7 oder Ende eingeben")
+            
+
+    
+    
+    
     current_S = int(Eingabe) -1
     S_Stand[current_S] = S_Stand[current_S] + 1
     print(S_Stand)
