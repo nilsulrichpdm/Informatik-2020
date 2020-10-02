@@ -52,11 +52,10 @@ def main():
 
     S_Stand =[0,0,0,0,0,0,0]
 
-    SP1_WAGERECHT =[0,0,0,0,0,0,0] 
-    SP2_WAGERECHT = [0,0,0,0,0,0,0]
+    SP1 =[0,0,0,0,0,0,0] 
+    SP2 = [0,0,0,0,0,0,0]
 
-    SP1_SENKRECHT =[0,0,0,0,0,0,0] 
-    SP2_SENKRECHT = [0,0,0,0,0,0,0]
+    
 
 
     Programm_ENDE = False
@@ -110,15 +109,15 @@ def main():
 
 
         if Symbol ==Symbol1:
-            SP1_WAGERECHT[S_Stand[current_S]] = SP1_WAGERECHT[S_Stand[current_S]] + 2 ** (8-int(Eingabe))
-            Programm_ENDE = prüfe_binaere_Zahl(SP1_WAGERECHT[S_Stand[current_S]],15) > 0
+            SP1[S_Stand[current_S]] = SP1[S_Stand[current_S]] + 2 ** (8-int(Eingabe))
+            Programm_ENDE = prüfe_binaere_Zahl(SP1[S_Stand[current_S]],15) > 0
 
         else:
-            SP2_WAGERECHT[S_Stand[current_S]] = SP2_WAGERECHT[S_Stand[current_S]] + 2 ** (8-int(Eingabe))
-            Programm_ENDE = prüfe_binaere_Zahl(SP2_WAGERECHT[S_Stand[current_S]],15) > 0
+            SP2[S_Stand[current_S]] = SP2[S_Stand[current_S]] + 2 ** (8-int(Eingabe))
+            Programm_ENDE = prüfe_binaere_Zahl(SP2[S_Stand[current_S]],15) > 0
 
-        print("SP1:" + str(SP1_WAGERECHT))
-        print("SP2:" + str(SP2_WAGERECHT))
+        print("SP1:" + str(SP1))
+        print("SP2:" + str(SP2))
 
 
         S_Stand[current_S] = S_Stand[current_S] + 1
