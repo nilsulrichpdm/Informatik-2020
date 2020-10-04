@@ -9,7 +9,7 @@ def ausgabe_Spielfeld(Zeilen):
 
 
 def prüfe_binaere_Zahl(Zahl,Maske):
-    Ergebnis= 0
+    
     counter=0
     while Zahl >= Maske:
         counter+=1
@@ -115,12 +115,27 @@ def Diagonale_LURO_binaer(SP_LISTE, aktuelle_Zeile, aktuelle_Spalte):
         if not((2 ** (7-S) & SP_LISTE[Z-1]) == 0): #Die Position der Liste ist belegt
             Ergebnis = Ergebnis + 2 ** i
          
-        S=S-1
+        S=S + 1
         i= i +1
         if S==1:
             
             return Ergebnis
     return Ergebnis
+
+def Senkrechte_binaer(SP_LISTE, aktuelle_Zeile, aktuelle_Spalte):
+    # Senkrecht nach Unten
+    # Das Programm durchläuft von Z1 bis Z7 diagonal die SP_LISTE
+    Ergebnis = 0
+    S = aktuelle_Spalte
+    Z_Start = 1
+    i = 0
+    for Z in range (Z_Start, aktuelle_Zeile + 1):
+        if not((2 ** (7-S) & SP_LISTE[Z-1]) == 0): #Die Position der Liste ist belegt
+            Ergebnis = Ergebnis + 2 ** i
+        i = i + 1
+    return Ergebnis
+
+
 
 
 
@@ -241,6 +256,6 @@ def main():
     
 
 TEST_LISTE=[255,255,255,255,255,255,255]
-print(Diagonale_LORU_binaer(TEST_LISTE,4,7))
+print(Diagonale_LORU_binaer(TEST_LISTE,4,4))
 
 
