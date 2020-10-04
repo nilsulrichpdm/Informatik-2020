@@ -24,25 +24,44 @@ def prüfe_binaere_Zahl(Zahl,Maske):
     return Ergebnis
 
 def Diagonale_LORU_binaer(SP_LISTE, aktuelle_Zeile, aktuelle_Spalte):
-    #Beispiel 
+    # LORU = Links Oben Rechts Unten
+    # Das Programm durchläuft von Z1 bis Z7 diagonal die SP_LISTE
+    # aus der aktuellen Position wird die Spalte in Z1 berechnet: S = ...
+    # Wenn S > 7 -> Z_Start = S-7 + 1 und S=7
+    # Z durchläuft von Z_Start bis 7 (8) die Schleife
+    # i Stellt die aktuelle Position / Index der binären Zahl da 
+    # durch logische AND Verknüpfung von SP_Liste und 2 ** i erhält man die Information, ob die Stelle belegt ist oder nicht
+    # wenn die Stelle belegt ist, wird durch Addition von 2 ** i und Ergebnis die Belegung in die Diagonale übertragen
+    # Beispiel 1 
     # aktuelle Zeile = 4
     # aktuell Spalte = 4
-    # Diagonale Z5 = S3 / Z6 = S2 Z7 = S1 - nach LINKS 
-    # Diagonale Z3 = S5 / Z2 = S2 Z1 = S1
+    # S = 4 + (4-1) = 7 / die Diagonale beginnt in Z1 / SP7
+    # da S nicht > 7 bleibt Z_Start = 1
+    # von 1 bis 7 durchläuft Z die Schleife und addiert die Belegungswerte
+    # 
+    # Beispiel 2
+    # aktuelle Zeile = 4
+    # aktuell Spalte = 6
+    # S = 6 + (4-1) = 9 / 
+    # da S > 7:  Z_Start = 9 -7 + 1 = 3
+    # die Diagonale beginnt in Z !3! / SP7
+    # von !3! bis 7 durchläuft Z die Schleife und addiert die Belegungswerte    #
+
+
     # SP_LISTE enthält binär codierte Zeile / Reihenfolge Z1->Z7 als Dezimalzahl
     # Z1 = 65 -> S1 und S7 sind belegt
 
     Ergebnis = 0
     # Berechne den Startpunkt der Diagonalen bei Zeile 1
-    Start =1
+    Z_Start =1
     i = 0
     S = aktuelle_Spalte + (aktuelle_Zeile -1)
-    if S-7 > 0:
-        Start = S-7+1
-        S = min (7,S)
+    if S > 7:
+        Z_Start = S-7+1
+        S = 7
         
     
-    for Z in range (Start,8):
+    for Z in range (Z_Start,8):
         
         if not((2 ** (7-S) & SP_LISTE[Z-1]) == 0): #Die Position der Liste ist belegt
             Ergebnis = Ergebnis + 2 ** i
@@ -50,9 +69,58 @@ def Diagonale_LORU_binaer(SP_LISTE, aktuelle_Zeile, aktuelle_Spalte):
         S=S-1
         i= i +1
         if S==1:
+            
             return Ergebnis
     return Ergebnis
 
+def Diagonale_LURO_binaer(SP_LISTE, aktuelle_Zeile, aktuelle_Spalte):
+    # LURO = Links Unten Rechts Oben
+    # Das Programm durchläuft von Z1 bis Z7 diagonal die SP_LISTE
+    # aus der aktuellen Position wird die Spalte in Z1 berechnet: S = ...
+    # Wenn S < 1 -> Z_Start = 2 - S und S=1
+    # Z durchläuft von Z_Start bis 7 (8) die Schleife
+    # i Stellt die aktuelle Position / Index der binären Zahl da 
+    # durch logische AND Verknüpfung von SP_Liste und 2 ** i erhält man die Information, ob die Stelle belegt ist oder nicht
+    # wenn die Stelle belegt ist, wird durch Addition von 2 ** i und Ergebnis die Belegung in die Diagonale übertragen
+    # Beispiel 1 
+    # aktuelle Zeile = 4
+    # aktuell Spalte = 4
+    # S = 4 - (4-1) = 1 / die Diagonale beginnt in Z1 / SP1
+    # da S nicht < 1 bleibt Z_Start = 1
+    # von 1 bis 7 durchläuft Z die Schleife und addiert die Belegungswerte
+    # 
+    # Beispiel 2
+    # aktuelle Zeile = 4
+    # aktuell Spalte = 2
+    # S = 2 - (4-1) = -1 / 
+    # da S < 0:  Z_Start = 2 - (-1) = 3
+    # die Diagonale beginnt in Z !3! / SP1
+    # von !3! bis 7 durchläuft Z die Schleife und addiert die Belegungswerte    #
+
+    
+    # SP_LISTE enthält binär codierte Zeile / Reihenfolge Z1->Z7 als Dezimalzahl
+    # Z1 = 65 -> S1 und S7 sind belegt
+    Ergebnis = 0
+    # Berechne den Startpunkt der Diagonalen bei Zeile 1
+    Z_Start =1
+    i = 0
+    S = aktuelle_Spalte - (aktuelle_Zeile - 1)
+    if S < 1:
+        Z_Start =  2 - S  
+        S = 1
+        
+    
+    for Z in range (Z_Start,8):
+        
+        if not((2 ** (7-S) & SP_LISTE[Z-1]) == 0): #Die Position der Liste ist belegt
+            Ergebnis = Ergebnis + 2 ** i
+         
+        S=S-1
+        i= i +1
+        if S==1:
+            
+            return Ergebnis
+    return Ergebnis
 
 
 
