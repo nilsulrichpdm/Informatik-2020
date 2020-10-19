@@ -17,7 +17,7 @@ class Player(object):
         self.font_48 = pygame.font.SysFont(None, 48)
         self.font_24 = pygame.font.SysFont(None, 24)
 
-        self.rect = pygame.draw.rect(screen, (0, 0, 128), (64, 54, 16, 16))
+        self.rect = pygame.draw.rect(screen, (0, 0, 128), (100, 100, 100, 100))
         
         self.dist = 10
         self.WHITE =     (255, 255, 255)
@@ -56,7 +56,7 @@ class Player(object):
     def draw_circle(self,surface):
         for i in range(15,585,30):
             for j in range(15,585,30):
-                self.P11 = pygame.draw.circle(screen, self.GREEN, (i,j), 10)
+                self.P11 = pygame.draw.circle(screen, self.BLUE, (i,j), 10)
     
     def draw_TEXT(self,Text):
         img = self.font_24.render(Text ,True, self.BLUE)
@@ -70,7 +70,7 @@ player = Player()
 #clock = pygame.time.Clock()
 screen.fill((255, 255, 255))
 player.draw(screen)
-player.draw_TEXT("LABERSÜLZ")
+player.draw_TEXT("")
 pygame.display.update()
 
 while True:
