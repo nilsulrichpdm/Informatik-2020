@@ -1,7 +1,7 @@
 import pygame
 from pygame.locals import * # Constants
 #VARIABLEN
-
+clock = pygame.time.Clock()
 WHITE =     (255, 255, 255)
 BLUE =      (  0,   0, 255)
 YELLOW =    (255,255,0)
@@ -78,26 +78,43 @@ for Zeile in range(ANZAHL):
 
 pygame.display.update()
 GameOver = False
+z = 0
+s = 1
+FIRST = True
 while not(GameOver):
+    z= z+1
+    if z==ANZAHL+1:
+        z=1
+        s= s+1
+        if s==ANZAHL+1:
+            s=1
+    x = int(ZOOM*(RAND_X+s-0.5))
+    y = int(ZOOM*(RAND_Y+ (ANZAHL-z)+ 0.5))
+    pm =[x,y]
 
+    radius = int(Stein_Radius * ZOOM)
+    pygame.draw.circle(screen, RED, pm, radius)
+    if not(FIRST):
+        pygame.draw.circle(screen, BLUE, pm_OLD, radius)
+    FIRST = False
+    pygame.display.update()
+    clock.tick(1)
+    pm_OLD = pm
     for e in pygame.event.get():
         if e.type == KEYDOWN:
             key = e.key
-            if key == K_DOWN:
-                pygame.quit(); exit()
-            if key == K_UP:
-                q1=(0,0,Fenster_X, int(ZOOM *RAND_Y))
+            if key == K_q:
+                print (i)
+                GameOver = True
+           
+              
                 
-                q2=(0,0,int(ZOOM *RAND_Y),Fenster_Y)
-               
-                q3=(ZOOM*(RAND_X + ANZAHL),0,ZOOM* RAND_X, Fenster_Y)
-               
-                q4=(0,ZOOM*(RAND_Y + ANZAHL),Fenster_X,RAND_Y*ZOOM)
-                pygame.draw.rect(screen, RED, q1)
-                pygame.draw.rect(screen, RED, q2)
-                pygame.draw.rect(screen, RED, q3)
-                pygame.draw.rect(screen, RED, q4)
-                pygame.display.update()
+            
+            
+
+            
+        
+            
 
             
                
