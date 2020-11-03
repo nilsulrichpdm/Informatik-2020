@@ -74,3 +74,17 @@ print(Zeile7)
 print(Zeile8)
 print(Zeile9)
 print(Zeile10)
+
+#eingabe = input ("Zahl eingeben!")
+eingabe=2.5
+
+i = 1 
+#for eingabe in range(i<11): 
+ #   ergebnis = int(eingabe) ** i 
+  #  print(int(ergebnis) + int(i))
+
+while i<11:
+    ergebnis = float(eingabe)**int(i)
+    print ("Das Ergebnis ist %10.2f und das Quadrat davon ist %8d und 1 / ergebnis =%6.2f%%" %(ergebnis,ergebnis * ergebnis,1/ergebnis *100))
+   #  print (("Ergbnis" + str( i)+" = ") + str(ergebnis))
+    i = i+1 
