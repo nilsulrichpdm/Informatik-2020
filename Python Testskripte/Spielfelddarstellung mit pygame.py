@@ -72,19 +72,18 @@ for Zeile in range(ANZAHL):
         radius = int(Stein_Radius * ZOOM)
         pygame.draw.circle(screen, YELLOW, pm, radius)
         
-class Player():    
-    def __init__(self):
-        self.font_48 = pygame.font.SysFont(None, 48)
-        self.font_24 = pygame.font.SysFont(None, 24)
-        self.BLUE =      (  0,   0, 255)
 
-    def draw_TEXT(self,Text):
-        img = self.font_24.render(Text ,True, self.BLUE)
-        screen.blit(img, (RAND_X, RAND_Y))
+def zeichne_text(Text,Size=24,X=RAND_X,Y=RAND_Y,Farbe = BLUE):
+    myFont = pygame.font.SysFont(None,Size)
+    img = myFont.render(Text,True,Farbe)
+    screen.blit(img, (X, Y))
 
 pygame.init()
-player = Player()
-player.draw_TEXT("Hallo das ist ein Test !!!")
+
+Text ="Hallo das ist ein Test"
+myFontSize = 24
+zeichne_text(Text,48,100,100,YELLOW)
+
 
 pygame.display.update()
 GameOver = False
